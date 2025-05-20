@@ -288,7 +288,7 @@ export class BrowserPollConnection implements Transport {
   /**
    * No-op for polling
    */
-  markConnectionHealthy() {}
+  markConnectionHealthy() { }
 
   /**
    * Stops polling and cleans up the iframe
@@ -472,7 +472,7 @@ export class FirebaseIFrameScriptHolder {
         const currentDomain = document.domain;
         script = '<script>document.domain="' + currentDomain + '";</script>';
       }
-      const iframeContents = '<html><body>' + script + '</body></html>';
+      const iframeContents = '<!doctype html><html><body>' + script + '</body></html>';
       try {
         this.myIFrame.doc.open();
         this.myIFrame.doc.write(iframeContents);
@@ -576,7 +576,7 @@ export class FirebaseIFrameScriptHolder {
     this.alive = true;
 
     //send the initial request. If there are requests queued, make sure that we transmit as many as we are currently able to.
-    while (this.newRequest_()) {}
+    while (this.newRequest_()) { }
   }
 
   /**
@@ -611,8 +611,8 @@ export class FirebaseIFrameScriptHolder {
         const nextSeg = this.pendingSegs[0];
         if (
           (nextSeg.d as unknown[]).length +
-            SEG_HEADER_SIZE +
-            curDataString.length <=
+          SEG_HEADER_SIZE +
+          curDataString.length <=
           MAX_URL_DATA_SIZE
         ) {
           //great, the segment will fit. Lets append it.
